@@ -14,7 +14,5 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 movementDirection = _playerInputs.movement;
         _rb.velocity = new Vector3(movementDirection.x, 0, movementDirection.y) * _moveSpeed;
-
-        Debug.Log(_rb.velocity);
     }
 }
