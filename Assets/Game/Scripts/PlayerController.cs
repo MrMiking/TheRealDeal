@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float _moveSpeed;
     [Header("References")]
-    [SerializeField] private SSO_PlayerInputs _playerInputs;
+    [SerializeField] private PlayerInputs _playerInputs;
     [SerializeField] private Rigidbody _rb;
 
     private void FixedUpdate()
