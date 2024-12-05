@@ -11,6 +11,7 @@ public class TrapDamage : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            Debug.Log("Take damage");
             RSE_DamageEvent.damageEvent?.Invoke(damageInflicted);
         }
     }
