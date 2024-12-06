@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
-  smoothSpeed: 0.01
+  smoothSpeed: 0.125
   _positionOffset: {x: 0, y: 10, z: -10}
 --- !u!1 &4010867679412575993
 GameObject:
@@ -92,7 +92,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0.9436617, b: 1, a: 1}
+  m_BackGroundColor: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

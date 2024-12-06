@@ -1,14 +1,30 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RandomSpawner : MonoBehaviour
 {
-    [Header("Settings")]
-    public float surfaceHigh;
-    public int maxIterations;
+    [Header("Wrapper")]
+    [SerializeField] private RSE_WinEvent RSE_WinEvent;
 
-    [Header("Reference")]
-    public GameObject objectToSpawn;
-    public Collider areaCollider;
+    [Header("Settings")]
+    [SerializeField] private float surfaceHigh;
+    [SerializeField] private int maxIterations;
+
+    [Header("References")]
+    [SerializeField] private GameObject objectToSpawn;
+    [SerializeField] private Collider areaCollider;
+
+    private List<GameObject> objects = new List<GameObject>();
+
+    private void OnEnable()
+    {
+        RSE_WinEvent.winEvent += GenerateRandomPosition;
+    }
+
+    private void OnDisable()
+    {
+        RSE_WinEvent.winEvent -= GenerateRandomPosition;
+    }
 
     private void Start()
     {
@@ -17,10 +33,12 @@ public class RandomSpawner : MonoBehaviour
 
     private void GenerateRandomPosition()
     {
-        Vector3 pointRandom;
-        Vector3 pointOnSurface = Vector3.zero;
+        Clear();
 
-        bool pointFound = false;
+        Vector3 pointRandom;
+        Vector3 pointOnSurface;
+
+        bool pointFound;
 
         for (int i = 0; i < maxIterations; i++)
         {
@@ -33,6 +51,7 @@ public class RandomSpawner : MonoBehaviour
                 i++;
                 GameObject newObject = Instantiate(objectToSpawn);
                 newObject.transform.position = pointOnSurface - new Vector3(0, 1f, 0);
+                objects.Add(newObject);
             }
         }
     }
@@ -63,6 +82,18 @@ public class RandomSpawner : MonoBehaviour
             0,
             Random.Range(bounds.min.z * scale, bounds.max.z * scale)
         );
+    }
+
+    private void Clear()
+    {
+        if(objects != null)
+        {
+            for (int i = 0; i < objects.Count; i++)
+            {
+                Destroy(objects[i]);
+                objects.RemoveAt(i);
+            }
+        }
     }
 
     void OnDrawGizmos()
